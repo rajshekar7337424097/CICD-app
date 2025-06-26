@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="bd8874d4-3a46-4658-b183-63dd585df0f6" >
+		<http:listener-connection host="localhost" port="8081" />
+	</http:listener-config>
+	<flow name="cici_appFlow" doc:id="84cf65ae-292e-494c-a5da-1a1411bc29be" >
+		<http:listener doc:name="Listener" doc:id="abee73a1-4813-460f-9bdd-dd1432575c41" config-ref="HTTP_Listener_config" path="/cicd"/>
+		<logger level="INFO" doc:name="start Logger" doc:id="5e38e12a-dac9-48ed-ab3f-034c629f1827" message="initiates the messaging process"/>
+		<set-payload value='#["CICD process successfull"]' doc:name="Set Payload" doc:id="b0a34001-417e-4213-bf19-50d1ac538310" />
+		<logger level="INFO" doc:name="end Logger" doc:id="7b15918a-1428-4a1b-b650-e48fdfea9af9" message="#[payload]"/>
+	</flow>
+</mule>
